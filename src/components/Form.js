@@ -1,8 +1,9 @@
-import { Box, Button, TextField } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useFormik } from "formik";
-
+import React from "react";
+import { MemoizedTextField } from "./MemoizedTextField";
 const onSubmit = (values) => {
   console.log(values);
 };
@@ -56,13 +57,12 @@ const Form = () => {
       ? source_data["wikipedia_id"]
       : "",
   };
-
   const formik = useFormik({
     initialValues,
     onSubmit,
     validate,
   });
-
+  // all fields are included except for focus_area
   return (
     <Box
       display="flex"
@@ -78,639 +78,326 @@ const Form = () => {
           height: "100%",
         }}
       >
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"long_name"}
-            fullWidth
-            variant="outlined"
-            label={"Source full name"}
-            multiline
-            value={formik.values["long_name"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["long_name"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"short_name"}
-            fullWidth
-            variant="outlined"
-            label={"Source short name"}
-            multiline
-            value={formik.values["short_name"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["short_name"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"orig_source"}
-            fullWidth
-            variant="outlined"
-            label={"original source"}
-            multiline
-            value={formik.values["orig_source"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["orig_source"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"description"}
-            fullWidth
-            variant="outlined"
-            label={"Description"}
-            multiline
-            value={formik.values["description"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["description"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"Original"}
-            fullWidth
-            variant="outlined"
-            label={"Original"}
-            multiline
-            value={formik.values["Original"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["Original"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"Suggested"}
-            fullWidth
-            variant="outlined"
-            label={"Suggested"}
-            multiline
-            value={formik.values["Suggested"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["Suggested"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"periodicity"}
-            fullWidth
-            variant="outlined"
-            label={"Periodicity"}
-            multiline
-            value={formik.values["periodicity"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["periodicity"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"type"}
-            fullWidth
-            variant="outlined"
-            label={"Type"}
-            multiline
-            value={formik.values["type"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["type"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"Topic"}
-            fullWidth
-            variant="outlined"
-            label={"Topic"}
-            multiline
-            value={formik.values["Topic"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["Topic"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"Population"}
-            fullWidth
-            variant="outlined"
-            label={"Population"}
-            multiline
-            value={formik.values["Population"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["Population"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"text"}
-            fullWidth
-            variant="outlined"
-            label={"text"}
-            multiline
-            value={formik.values["text"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["text"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"geo"}
-            fullWidth
-            variant="outlined"
-            label={"geography"}
-            multiline
-            value={formik.values["geo"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["geo"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"geo_short"}
-            fullWidth
-            variant="outlined"
-            label={"geography short"}
-            multiline
-            value={formik.values["geo_short"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["geo_short"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"geo_detail"}
-            fullWidth
-            variant="outlined"
-            label={"geography details"}
-            multiline
-            value={formik.values["geo_detail"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["geo_detail"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
+        <MemoizedTextField
+          name="long_name"
+          label="Source full name"
+          value={formik.values["long_name"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["long_name"]}
+          error={
+            formik.touched["long_name"] && Boolean(formik.errors["long_name"])
+          }
+          initialValue={initialValues["long_name"]}
+        />
+        <MemoizedTextField
+          name="short_name"
+          label="Source short name"
+          value={formik.values["short_name"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["short_name"]}
+          error={
+            formik.touched["short_name"] && Boolean(formik.errors["short_name"])
+          }
+          initialValue={initialValues["short_name"]}
+        />
+        <MemoizedTextField
+          name="orig_source"
+          label="original source"
+          value={formik.values["orig_source"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["orig_source"]}
+          error={
+            formik.touched["orig_source"] &&
+            Boolean(formik.errors["orig_source"])
+          }
+          initialValue={initialValues["orig_source"]}
+        />
+        <MemoizedTextField
+          name="description"
+          label="Description"
+          value={formik.values["description"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["description"]}
+          error={
+            formik.touched["description"] &&
+            Boolean(formik.errors["description"])
+          }
+          initialValue={initialValues["description"]}
+        />
+        <MemoizedTextField
+          name="Original"
+          label="Original"
+          value={formik.values["Original"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["Original"]}
+          error={
+            formik.touched["Original"] && Boolean(formik.errors["Original"])
+          }
+          initialValue={initialValues["Original"]}
+        />
+        <MemoizedTextField
+          name="Suggested"
+          label="Suggested"
+          value={formik.values["Suggested"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["Suggested"]}
+          error={
+            formik.touched["Suggested"] && Boolean(formik.errors["Suggested"])
+          }
+          initialValue={initialValues["Suggested"]}
+        />
+        <MemoizedTextField
+          name="periodicity"
+          label="Periodicity"
+          value={formik.values["periodicity"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["periodicity"]}
+          error={
+            formik.touched["periodicity"] &&
+            Boolean(formik.errors["periodicity"])
+          }
+          initialValue={initialValues["periodicity"]}
+        />
+        <MemoizedTextField
+          name="type"
+          label="Type"
+          value={formik.values["type"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["type"]}
+          error={formik.touched["type"] && Boolean(formik.errors["type"])}
+          initialValue={initialValues["type"]}
+        />
+        <MemoizedTextField
+          name="Topic"
+          label="Topic"
+          value={formik.values["Topic"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["Topic"]}
+          error={formik.touched["Topic"] && Boolean(formik.errors["Topic"])}
+          initialValue={initialValues["Topic"]}
+        />
+        <MemoizedTextField
+          name="Population"
+          label="Population"
+          value={formik.values["Population"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["Population"]}
+          error={
+            formik.touched["Population"] && Boolean(formik.errors["Population"])
+          }
+          initialValue={initialValues["Population"]}
+        />
+        <MemoizedTextField
+          name="geo"
+          label="Geography"
+          value={formik.values["geo"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["geo"]}
+          error={formik.touched["geo"] && Boolean(formik.errors["geo"])}
+          initialValue={initialValues["geo"]}
+        />
 
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"img"}
-            fullWidth
-            variant="outlined"
-            label={"img"}
-            multiline
-            value={formik.values["img"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["img"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"Flag Behavior"}
-            fullWidth
-            variant="outlined"
-            label={"Flag Behavior"}
-            multiline
-            value={formik.values["Flag Behavior"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["Flag Behavior"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"Flag_Opinion"}
-            fullWidth
-            variant="outlined"
-            label={"Flag Opinion"}
-            value={formik.values["Flag_Opinion"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            type="number"
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"time_period"}
-            fullWidth
-            variant="outlined"
-            label={"Time Period"}
-            multiline
-            value={formik.values["time_period"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["time_period"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
+        <MemoizedTextField
+          name="geo_detail"
+          label="Geography details"
+          value={formik.values["geo_detail"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["geo_detail"]}
+          error={
+            formik.touched["geo_detail"] && Boolean(formik.errors["geo_detail"])
+          }
+          initialValue={initialValues["geo_detail"]}
+        />
+        <MemoizedTextField
+          name="geo_short"
+          label="Geography Short"
+          value={formik.values["geo_short"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["geo_short"]}
+          error={
+            formik.touched["geo_short"] && Boolean(formik.errors["geo_short"])
+          }
+          initialValue={initialValues["geo_short"]}
+        />
+        <MemoizedTextField
+          name="img"
+          label="static image name"
+          value={formik.values["img"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["img"]}
+          error={formik.touched["img"] && Boolean(formik.errors["img"])}
+          initialValue={initialValues["img"]}
+        />
+        <MemoizedTextField
+          name="Flag_Behavior"
+          label="Flag Behavior"
+          value={formik.values["Flag_Behavior"]}
+          handleChange={formik.handleChange}
+          multiline={true}
+          helperText={formik.errors["Flag_Behavior"]}
+          error={
+            formik.touched["Flag_Behavior"] &&
+            Boolean(formik.errors["Flag_Behavior"])
+          }
+          initialValue={initialValues["Flag_Behavior"]}
+        />
+        <MemoizedTextField
+          name="Flag_Opinion"
+          label="Flag Opinion"
+          value={formik.values["Flag_Opinion"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["Flag_Opinion"]}
+          error={
+            formik.touched["Flag_Opinion"] &&
+            Boolean(formik.errors["Flag_Opinion"])
+          }
+          initialValue={initialValues["Flag_Opinion"]}
+          type="number"
+        />
+        <MemoizedTextField
+          name="time_period"
+          label="Time period"
+          value={formik.values["time_period"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["time_period"]}
+          error={
+            formik.touched["time_period"] &&
+            Boolean(formik.errors["time_period"])
+          }
+          initialValue={initialValues["time_period"]}
+          multiline={true}
+        />
         {/* number type inputs */}
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"sample_size_cols"}
-            fullWidth
-            type="number"
-            variant="outlined"
-            label={"sample size columns number"}
-            value={formik.values["sample_size_cols"]}
-            onChange={formik.handleChange}
+        <MemoizedTextField
+          name="sample_size_cols"
+          label="sample size columns number"
+          value={formik.values["sample_size_cols"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["sample_size_cols"]}
+          error={
+            formik.touched["sample_size_cols"] &&
+            Boolean(formik.errors["sample_size_cols"])
+          }
+          initialValue={initialValues["sample_size_cols"]}
+          type="number"
+        />
+        <MemoizedTextField
+          name="sample_size_rows"
+          label="sample size rows number"
+          value={formik.values["sample_size_rows"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["sample_size_rows"]}
+          error={
+            formik.touched["sample_size_rows"] &&
+            Boolean(formik.errors["sample_size_rows"])
+          }
+          initialValue={initialValues["sample_size_rows"]}
+          type="number"
+        />
+        <MemoizedTextField
+          name="Variables"
+          label="Variables number"
+          value={formik.values["Variables"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["Variables"]}
+          error={
+            formik.touched["Variables"] && Boolean(formik.errors["Variables"])
+          }
+          initialValue={initialValues["Variables"]}
+          type="number"
+        />
 
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"sample_size_rows"}
-            fullWidth
-            variant="outlined"
-            type="number"
-            label={"sample size rows number"}
-            value={formik.values["sample_size_rows"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-          />
-        </Box>
+        <MemoizedTextField
+          name="re3data"
+          label="re3data"
+          value={formik.values["re3data"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["re3data"]}
+          error={formik.touched["re3data"] && Boolean(formik.errors["re3data"])}
+          initialValue={initialValues["re3data"]}
+        />
 
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"Variables"}
-            fullWidth
-            label={"Variables number"}
-            value={formik.values["Variables"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
+        <MemoizedTextField
+          name="twitter"
+          label="Twitter"
+          value={formik.values["twitter"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["twitter"]}
+          error={formik.touched["twitter"] && Boolean(formik.errors["twitter"])}
+          initialValue={initialValues["twitter"]}
+        />
+        <MemoizedTextField
+          name="url_internal"
+          label="Url internal"
+          value={formik.values["url_internal"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["url_internal"]}
+          error={
+            formik.touched["url_internal"] &&
+            Boolean(formik.errors["url_internal"])
+          }
+          initialValue={initialValues["url_internal"]}
+        />
+        <MemoizedTextField
+          name="url_orig"
+          label="Url Original"
+          value={formik.values["url_orig"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["url_orig"]}
+          error={
+            formik.touched["url_orig"] && Boolean(formik.errors["url_orig"])
+          }
+          initialValue={initialValues["url_orig"]}
+        />
+        <MemoizedTextField
+          name="wikidata_id"
+          label="Wikidata Id"
+          value={formik.values["wikidata_id"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["wikidata_id"]}
+          error={
+            formik.touched["wikidata_id"] &&
+            Boolean(formik.errors["wikidata_id"])
+          }
+          initialValue={initialValues["wikidata_id"]}
+        />
+        <MemoizedTextField
+          name="wikipedia_id"
+          label="Wikipidia URL"
+          value={formik.values["wikipedia_id"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["wikipedia_id"]}
+          error={
+            formik.touched["wikipedia_id"] &&
+            Boolean(formik.errors["wikipedia_id"])
+          }
+          initialValue={initialValues["wikipedia_id"]}
+        />
+        <MemoizedTextField
+          name="text"
+          label="Text"
+          value={formik.values["text"]}
+          handleChange={formik.handleChange}
+          helperText={formik.errors["text"]}
+          multiline={true}
+          error={formik.touched["text"] && Boolean(formik.errors["text"])}
+          initialValue={initialValues["text"]}
+        />
 
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"re3data"}
-            fullWidth
-            variant="outlined"
-            label={"re3data"}
-            multiline
-            value={formik.values["re3data"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["re3data"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"twitter"}
-            fullWidth
-            variant="outlined"
-            label={"Twitter"}
-            multiline
-            value={formik.values["twitter"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["twitter"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"url_internal"}
-            fullWidth
-            variant="outlined"
-            label={"internal url"}
-            multiline
-            value={formik.values["url_internal"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["url_internal"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"url_orig"}
-            fullWidth
-            variant="outlined"
-            label={"original url"}
-            multiline
-            value={formik.values["url_orig"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["url_orig"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"wikidata_id"}
-            fullWidth
-            variant="outlined"
-            label={"Wiki data ID"}
-            multiline
-            value={formik.values["wikidata_id"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["wikidata_id"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"wikipedia_id"}
-            fullWidth
-            variant="outlined"
-            label={"wikepedia url"}
-            multiline
-            value={formik.values["wikipedia_id"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["wikipedia_id"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box>
-        {/* this one should be a select with adding option */}
-        {/* <Box
-          marginBottom="1rem"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <TextField
-            name={"focus_area"}
-            fullWidth
-            variant="outlined"
-            label={"wikepedia url"}
-            multiline
-            value={formik.values["focus_area"]}
-            onChange={formik.handleChange}
-            // helperText={formik.errors[field]}
-            // error={formik.touched[field] && Boolean(formik.errors[field])}
-            placeholder={
-              initialValues["focus_area"]
-                ? "Please enter a value"
-                : "this value was initially empty or null"
-            }
-          />
-        </Box> */}
         <Box
           display="flex"
           justifyContent="center"

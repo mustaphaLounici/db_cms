@@ -1,6 +1,8 @@
-import { Modal, Button, Box, TextField } from "@material-ui/core";
-import { useState } from "react";
+import { Modal, Button, Box } from "@material-ui/core";
+import React, { useState } from "react";
 import { useFormik } from "formik";
+import { MemoizedTextField } from "./MemoizedTextField";
+
 //if you want to add an input just write the name here
 //also add validation rules and its initial value.
 const inputs = ["title", "description"];
@@ -63,30 +65,30 @@ const AddSource = () => {
             autoComplete="off"
             onSubmit={formik.handleSubmit}
           >
-            <Box marginBottom="1rem">
-              <TextField
-                name={inputs[0]}
-                fullWidth
-                variant="outlined"
-                label={inputs[0]}
-                multiline
-                {...formik.getFieldProps(inputs[0])}
-                helperText={formik.errors[inputs[0]]}
-                error={formik.touched[inputs[0]] && !!formik.errors[inputs[0]]}
-              />
-            </Box>
-            <Box marginBottom="1rem">
-              <TextField
-                name={inputs[1]}
-                fullWidth
-                variant="outlined"
-                label={inputs[1]}
-                multiline
-                {...formik.getFieldProps(inputs[1])}
-                helperText={formik.errors[inputs[1]]}
-                error={formik.touched[inputs[1]] && !!formik.errors[inputs[1]]}
-              />
-            </Box>
+            <MemoizedTextField
+              name={inputs[0]}
+              fullWidth
+              variant="outlined"
+              label={inputs[0]}
+              multiline
+              handleChange={formik.handleChange}
+              helperText={formik.errors[inputs[0]]}
+              error={
+                formik.touched[inputs[0]] && Boolean(formik.errors[inputs[0]])
+              }
+            />
+            <MemoizedTextField
+              name={inputs[1]}
+              fullWidth
+              variant="outlined"
+              label={inputs[1]}
+              multiline
+              handleChange={formik.handleChange}
+              helperText={formik.errors[inputs[1]]}
+              error={
+                formik.touched[inputs[1]] && Boolean(formik.errors[inputs[1]])
+              }
+            />
 
             <Box
               display="flex"
