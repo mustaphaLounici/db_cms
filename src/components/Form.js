@@ -52,9 +52,11 @@ const Form = () => {
       : "",
     url_orig: source_data["url_orig"] ? source_data["url_orig"] : "",
     wikidata_id: source_data["wikidata_id"] ? source_data["wikidata_id"] : "",
+
     wikipedia_id: source_data["wikipedia_id"]
       ? source_data["wikipedia_id"]
       : "",
+    wikipedia_id: source_data["wikipedia_id"] || "",
   };
 
   const formik = useFormik({

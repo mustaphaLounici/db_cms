@@ -69,7 +69,7 @@ function SourcesTable() {
           });
           const clickedSource = data.data.source1.findIndex(
             (source) =>
-              `${source.long_name}(${source.short_name})` === thisRow.name,
+              `${source.long_name}(${source.short_name})` === thisRow.name
           );
           history.push({
             //i'm passing the data directly

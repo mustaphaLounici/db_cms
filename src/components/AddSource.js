@@ -3,24 +3,25 @@ import { useState } from "react";
 import { useFormik } from "formik";
 //if you want to add an input just write the name here
 //also add validation rules and its initial value.
-const inputs = ["title", "description"];
-const initialValues = {
-  title: "",
-  description: "",
-};
-//handle submit
-const onSubmit = (values) => {
-  console.log(values);
-};
 
-const validate = (values) => {
-  const errors = {};
-
-  if (!values.title) errors.title = "field is required";
-  if (!values.description) errors.description = "field is required";
-  return errors;
-};
 const AddSource = () => {
+  const inputs = ["title", "description"];
+  const initialValues = {
+    title: "",
+    description: "",
+  };
+  //handle submit
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.title) errors.title = "field is required";
+    if (!values.description) errors.description = "field is required";
+    return errors;
+  };
   const formik = useFormik({
     initialValues,
     onSubmit,
