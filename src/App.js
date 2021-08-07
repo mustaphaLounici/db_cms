@@ -1,23 +1,30 @@
-import "./style.css";
-
-import Header from "./components/Header";
-import SourcesTable from "./components/SourcesTable";
+import Sources from "./components/sections/sources";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Form from "./components/Form";
-
+import { SnackbarProvider } from "material-ui-snackbar-provider";
+import PrivatePage from "./components/layout/PrivatePage";
+import Login from "./components/layout/Login";
+import Home from "./components/sections/home";
 function App() {
   return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <SourcesTable />
-        </Route>
-        <Route exact path="/:sourceID">
-          <Form />
-        </Route>
-      </Switch>
-    </Router>
+    <SnackbarProvider SnackbarProps={{ autoHideDuration: 4000 }}>
+      <Router>
+        <Switch>
+          <Route path="/sources">
+            <PrivatePage>
+              <Sources />
+            </PrivatePage>
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/">
+            <PrivatePage>
+              <Home />
+            </PrivatePage>
+          </Route>
+        </Switch>
+      </Router>
+    </SnackbarProvider>
   );
 }
 
