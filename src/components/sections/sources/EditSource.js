@@ -7,6 +7,8 @@ import {
   Divider,
   FormControlLabel,
   Checkbox,
+  Hidden,
+  Fab,
 } from "@material-ui/core";
 
 import Dialog from "@material-ui/core/Dialog";
@@ -88,17 +90,22 @@ const EditSource = () => {
           marginBottom: "2rem",
         }}
       >
-        <Box display="flex" justifyContent="space-between" py="2rem">
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          py="2rem"
+          flexWrap="wrap"
+        >
           <Box display="flex" alignItems="center">
             <EditIcon color="primary" fontSize="large" />
-            <Typography variant="h5" noWrap>
+            <Typography variant="h6" noWrap>
               Edit a Data Sources
             </Typography>
           </Box>
 
-          <div>
+          <Hidden xsDown>
             <Button
-              size="large"
+              // size="large"
               variant="contained"
               color="secondary"
               onClick={() => setDeleteSourceVisible(true)}
@@ -106,7 +113,25 @@ const EditSource = () => {
             >
               Delete
             </Button>
-          </div>
+          </Hidden>
+
+          <Hidden smUp>
+            <Fab
+              // size="large"
+              variant="contained"
+              color="secondary"
+              onClick={() => setDeleteSourceVisible(true)}
+              // startIcon={}
+              style={{
+                position: "fixed",
+                right: "25px",
+                bottom: "30px",
+                zIndex: 300,
+              }}
+            >
+              <DeleteIcon />
+            </Fab>
+          </Hidden>
         </Box>
         <Divider />
         <form onSubmit={formik.handleSubmit}>
