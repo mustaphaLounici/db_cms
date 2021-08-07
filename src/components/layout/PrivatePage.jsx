@@ -14,7 +14,7 @@ function PrivatePage({ children }) {
         history.push("/login");
       }
     });
-  }, []);
+  }, [history]);
 
   if (user) {
     return <>{children}</>;

@@ -36,14 +36,16 @@ const EditSource = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  const [editSource, { error: editError, loading: editLoading }] =
-    useMutation(EDIT_DATA_SOURCE);
+  const [
+    editSource,
+    //  { error: editError, loading: editLoading }
+  ] = useMutation(EDIT_DATA_SOURCE);
   const [deleteSource, { error: deleteError, loading: deleteLoading }] =
     useMutation(DELETE_DATA_SOURCE);
 
   const {
     data,
-    error: fetchError,
+    // error: fetchError,
     loading: fetchloading,
   } = useQuery(GET_DATA_SOURCE, {
     variables: { id },
