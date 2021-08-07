@@ -12,7 +12,7 @@ import { auth } from "../../config/firebase";
 
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 // auth
 //   .createUserWithEmailAndPassword("admin@ctzn.pub", "random1234")
@@ -48,8 +48,11 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
 
+  if (auth.currentUser) return <Redirect to="/" />;
+
   const handleLogin = async (e) => {
     e.preventDefault();
+    await auth().setPersistence(auth.Auth.Persistence.LOCAL);
     auth
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
